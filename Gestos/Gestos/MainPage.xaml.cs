@@ -11,6 +11,7 @@ namespace Gestos
     public partial class MainPage : ContentPage
     {
         bool isVisible = false;
+        int size = 0;
         public MainPage()
         {
             InitializeComponent();
@@ -26,8 +27,15 @@ namespace Gestos
             var tap2 = new TapGestureRecognizer();
             //Asigno el evento a mi gesto
             tap2.Tapped += EventoTap2;
-
             this.bvExample.GestureRecognizers.Add(tap2);
+
+
+            var pinch1 = new PinchGestureRecognizer();
+            pinch1.PinchUpdated += EventoUpdated;
+            image1.GestureRecognizers.Add(pinch1);
+
+
+
 
 
         }
@@ -64,7 +72,11 @@ namespace Gestos
 
         }
 
-
+        void EventoUpdated(object sender, EventArgs args)
+        {
+            size++;            
+            labelMessage.FontSize = size;
+        }
 
 
 
